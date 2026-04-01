@@ -380,53 +380,63 @@ db.enablePersistence().catch(() => {}); // offline support
 //  CATEGORIES
 // ════════════════════════════════════════
 const CATS = {
-  'Transportation': {
-    icon:'🚗', color:'#4F46E5', bg:'#EEF2FF',
-    kw:['cab','uber','ola','taxi','auto rickshaw','auto-rickshaw','autorickshaw','auto','rickshaw','rick','tuk tuk','bus','metro','local train','local','train','rail','rapido','petrol','fuel','diesel','parking','toll','bike taxi','shuttle','commute','fare']
+  // ── Food: two distinct buckets ──
+  'Food Order In': {
+    icon:'📦', color:'#E53E3E', bg:'#FFF5F5',
+    kw:['zomato','swiggy','dunzo','food delivery','food order','online food','order food','ordered food','blinkit food','zepto food']
   },
-  'Food & Dining': {
+  'Dining Out': {
     icon:'🍽️', color:'#D97706', bg:'#FFFBEB',
-    kw:['zomato','swiggy','dunzo','food delivery','food order','online food','order food','restaurant','cafe','coffee','lunch','dinner','breakfast','brunch','meal','dine','thali','biryani','pizza','burger','sandwich','dosa','idli','roti','dal','sabzi','chinese','italian','sushi','mcdonalds','kfc','dominos','subway','starbucks','ccd','chai','tea','snack','juice','smoothie','ice cream','dessert','cake','bakery','mithai','sweet','canteen','dhaba','eating out','food court']
+    kw:['restaurant','restro','cafe','coffee','lunch','dinner','breakfast','brunch','meal','dine','dining','eating out','food court','canteen','dhaba','thali','biryani','pizza','burger','sandwich','dosa','idli','roti','dal','sabzi','chinese','italian','sushi','mcdonalds','kfc','dominos','subway','starbucks','ccd','chai','tea','snack','juice','smoothie','ice cream','dessert','cake','bakery','mithai','sweet']
   },
+  // ── Other food ──
   'Groceries': {
     icon:'🛒', color:'#38A169', bg:'#F0FFF4',
-    kw:['grocery','groceries','vegetables','fruits','milk','curd','paneer','eggs','flour','rice','pulses','kirana','dmart','bigbasket','jiomart','reliance fresh','supermarket','spices','oil','ghee','sugar','salt','atta','maida','provisions']
+    kw:['grocery','groceries','vegetables','fruits','milk','curd','paneer','eggs','flour','rice','pulses','kirana','dmart','bigbasket','jiomart','reliance fresh','more supermarket','supermarket','spices','oil','ghee','sugar','salt','atta','maida','provisions','monthly grocery','weekly grocery']
   },
+  // ── Getting around ──
+  'Transportation': {
+    icon:'🚗', color:'#4F46E5', bg:'#EEF2FF',
+    kw:['cab','uber','ola','taxi','auto rickshaw','auto-rickshaw','autorickshaw','auto','rickshaw','rick','rapido','bike taxi','bus','metro','local train','train','rail','petrol','fuel','diesel','parking','toll','shuttle','commute','fare','vehicle']
+  },
+  // ── Lifestyle ──
   'Shopping': {
     icon:'🛍️', color:'#7C3AED', bg:'#F5F3FF',
-    kw:['shopping','clothes','clothing','shirt','tshirt','trouser','jeans','dress','kurta','saree','shoes','sandal','slipper','bag','wallet','watch','sunglasses','accessories','amazon','flipkart','myntra','ajio','nykaa','meesho','fashion','jacket','hoodie','cap','household items']
+    kw:['shopping','clothes','clothing','shirt','tshirt','trouser','jeans','dress','kurta','saree','shoes','sandal','slipper','bag','wallet','watch','sunglasses','accessories','amazon','flipkart','myntra','ajio','nykaa','meesho','fashion','jacket','hoodie','cap','household items','home decor','furniture']
   },
   'Entertainment': {
     icon:'🎬', color:'#DB2777', bg:'#FDF2F8',
-    kw:['movie','cinema','pvr','inox','netflix','hotstar','prime video','spotify','youtube premium','concert','show','event','gaming','playstation','xbox','ott','subscription','disney','jiosaavn','bookmyshow','book my show','party','club','bar','pub','alcohol','beer','wine','whiskey','drinks','hookah']
+    kw:['movie','cinema','pvr','inox','netflix','hotstar','prime video','spotify','youtube premium','concert','show','event','gaming','playstation','xbox','ott','subscription','disney','jiosaavn','gaana','bookmyshow','book my show','party','club','bar','pub','alcohol','beer','wine','whiskey','drinks','hookah','outing']
   },
+  'Personal Care': {
+    icon:'💆', color:'#B83280', bg:'#FFF0F5',
+    kw:['salon','haircut','barber','hair color','hair spa','beauty parlour','spa','facial','waxing','threading','manicure','pedicure','makeup','cosmetics','skincare','lotion','cream','shampoo','facewash','deodorant','perfume','grooming','self care']
+  },
+  // ── Essentials ──
   'Health': {
     icon:'💊', color:'#2B6CB0', bg:'#EBF8FF',
-    kw:['medicine','medicines','medical','doctor','physician','pharmacy','chemist','hospital','clinic','health','gym','fitness','yoga','workout','lab test','blood test','scan','mri','xray','consultation','physiotherapy','dental','dentist','eye checkup','glasses','diagnostic','health checkup','ayurvedic']
+    kw:['medicine','medicines','medical','doctor','physician','pharmacy','chemist','hospital','clinic','gym','fitness','yoga','workout','lab test','blood test','scan','mri','xray','consultation','physiotherapy','dental','dentist','eye checkup','glasses','diagnostic','health checkup','ayurvedic','homeopathy']
   },
-  'Utilities': {
+  'Utilities & Bills': {
     icon:'⚡', color:'#B7791F', bg:'#FFFFF0',
-    kw:['electricity bill','electric bill','electricity','water bill','internet','wifi','broadband','phone bill','mobile bill','recharge','postpaid bill','gas bill','lpg cylinder','cylinder','cable tv','jio recharge','airtel recharge','tata sky','utility','bill payment']
+    kw:['electricity bill','electric bill','electricity','water bill','internet','wifi','broadband','phone bill','mobile bill','recharge','prepaid','postpaid bill','gas bill','lpg cylinder','cylinder','cable tv','jio recharge','airtel recharge','tata sky','dish tv','utility','bill payment']
   },
   'Rent & Housing': {
     icon:'🏠', color:'#2C7A7B', bg:'#E6FFFA',
-    kw:['rent','maintenance','society maintenance','housing','flat','apartment','deposit','landlord','pg','hostel','repair','plumber','electrician','carpenter','cleaning','maid','bai','cook','building','painting','renovation']
+    kw:['rent','maintenance','society maintenance','housing','flat','apartment','security deposit','landlord','pg','hostel','repair','plumber','electrician','carpenter','cleaning','maid','bai','cook','building','painting','renovation']
   },
+  // ── Occasional ──
   'Travel': {
     icon:'✈️', color:'#553C9A', bg:'#FAF5FF',
     kw:['flight','flights','hotel','trip','vacation','holiday','booking','makemytrip','goibibo','yatra','oyo','airbnb','resort','tour','travel','journey','visa','forex','irctc','train ticket','bus ticket','flight ticket','tour package']
   },
   'Education': {
     icon:'📚', color:'#276749', bg:'#F0FFF4',
-    kw:['course','courses','book','books','stationery','class','tuition','school fees','college fees','exam fees','admission','coaching','udemy','coursera','education','study','learning','notebook']
-  },
-  'Personal Care': {
-    icon:'💆', color:'#B83280', bg:'#FFF0F5',
-    kw:['salon','haircut','barber','hair color','beauty parlour','spa','facial','waxing','threading','manicure','pedicure','makeup','cosmetics','skincare','lotion','cream','shampoo','facewash','deodorant','perfume','grooming']
+    kw:['course','courses','book','books','stationery','tuition','school fees','college fees','exam fees','admission','coaching','udemy','coursera','study','learning','notebook','certification']
   },
   'Savings / Investment': {
     icon:'💰', color:'#D69E2E', bg:'#FFFFF0',
-    kw:['mutual fund','sip','stocks','investment','fd','fixed deposit','ppf','nps','insurance','lic','zerodha','groww','saving']
+    kw:['mutual fund','sip','stocks','investment','fd','fixed deposit','ppf','nps','insurance','lic','zerodha','groww','saving','transfer to savings']
   }
 };
 const OTHER_CAT = { name:'Other', icon:'📌', color:'#718096', bg:'#EDF2F7' };
