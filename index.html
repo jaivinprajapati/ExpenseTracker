@@ -480,9 +480,9 @@ function startSync() {
   setSyncState('syncing');
   const col = db.collection('households').doc(householdCode).collection('expenses');
   if (unsubscribe) unsubscribe();
-  unsubscribe = col.orderBy('date','desc').orderBy('createdAt','desc')
-    .onSnapshot(snap => {
-      expenses = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  unsubscribe = col.onSnapshot(snap => {
+      expenses = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+        .sort((a,b) => b.date.localeCompare(a.date) || (b.createdAt?.seconds||0) - (a.createdAt?.seconds||0));
       setSyncState('ok');
       updateHeader();
       if (currentScreen === 'add')       renderRecent();
